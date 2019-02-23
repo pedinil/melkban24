@@ -1,0 +1,47 @@
+   <Connector connectionTimeout="20000" port="8080" protocol="HTTP/1.1" redirectPort="8443" URIEncoding="UTF-8"/>
+   
+   
+   
+   <c:forEach var="i" begin="1" end="${pageSize}" step="1">
+		
+		<c:if test="${i==selectedPage}">
+			<li>
+				<a href="<c:url value="./page-${i}"/>">
+					<i class="fa fa-circle active"></i>
+					<span class="num"> ${i} </span>
+				</a>
+			</li>
+		</c:if>
+		
+		<c:if test="${i!=selectedPage}">
+			 <li>
+				<a href="<c:url value="./page-${i}"/>">
+					<i class="fa fa-circle"></i>
+					<span class="num"> ${i} </span>
+				</a>
+			</li>
+		</c:if>
+		
+	  </c:forEach> 
+	  
+	  
+	  
+	  mysql
+	  
+	  
+	mysql> CREATE USER 'finley'@'localhost' IDENTIFIED BY 'some_pass';
+	mysql> GRANT ALL PRIVILEGES ON *.* TO 'finley'@'localhost'
+	    ->     WITH GRANT OPTION;
+	    
+	    
+	  GRANT ALL PRIVILEGES ON *.* TO 'melkDBU'@'%' IDENTIFIED BY '123QWEasd' WITH GRANT OPTION;
+	  
+	  FLUSH PRIVILEGES;
+	  
+	  
+	  GRANT ALL PRIVILEGES ON *.* TO 'melkDBU'@'localhost' 
+   	  IDENTIFIED BY PASSWORD 'some_characters' 
+      WITH GRANT OPTION
+    
+    
+    

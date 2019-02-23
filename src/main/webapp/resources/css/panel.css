@@ -1,0 +1,99 @@
+#body{background:#fff} 
+.persian{font-family:'B Yekan'}
+
+#body .nav-tabs{border:0; text-align:center}
+#body .nav-tabs > li{text-align:center; display:inline-block; float:none}
+#body .nav-tabs > li a{font-size:1.2em; border:none; color:#000; font-weight:normal; padding: 40px 25px; text-align:center}
+#body .nav-tabs > li.active a{font-size:1.25em; font-weight:bold; padding:38px 25px 42px; background-color:rgba(255,255,255,0.4)}
+#body .nav-tabs > li i{color:#f00; margin:0 3px}
+#body .nav-tabs > li i.icon{width:50px; height:40px; filter:brightness(0) drop-shadow(7px 4px 5px #999); -webkit-filter:brightness(0) drop-shadow(7px 4px 5px #999)}
+#body .nav > li > a:hover{background-color:rgba(255,255,255,0.4)}
+
+#body .tabbable{padding:5px 40px}
+
+#hint{padding:10px 0 40px; color:#000}
+
+
+
+
+.grbwb{
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#aaa+0,aaa+20,f7f7f7+50,aaa+80,aaa+100 */
+	background: #aaa; /* Old browsers */
+	background: -moz-linear-gradient(left,  #aaa 0%, #aaa 20%, #f7f7f7 50%, #aaa 80%, #aaa 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(left,  #aaa 0%,#aaa 20%,#f7f7f7 50%,#aaa 80%,#aaa 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to right,  #aaa 0%,#aaa 30%,#eee 60%,#aaa 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#aaa', endColorstr='#aaa',GradientType=1 ); /* IE6-9 */
+}
+.grlbl{
+	position: relative; border-radius:0;
+}
+.grlbl:before{
+	border-color: #aaa transparent transparent;
+    border-style: solid;
+    border-width: 34px 34px 0 0;
+    content: " ";
+    height: 0;
+    position: absolute;
+    right: -34px;
+    top: 0;
+    width: 0;
+	z-index: 5;
+}
+
+.grlbl:after{
+	border-color: #d3d3d8 transparent transparent;
+    border-style: solid;
+    border-width: 34px 34px 0 0;
+    content: " ";
+    height: 0;
+    position: absolute;
+    left: -1px;
+    top: 0;
+    width: 0;
+}
+
+
+
+.main-tab-wrapper{border:2px solid #000; border-radius:8px; padding-bottom:15px; padding-top:15px; background:#fff}
+
+.tab-content .form-field{ margin-top:10px; }
+
+#moshaver-grid{max-height:400px; overflow:auto}
+#moshaver-actions .action{float:left; padding:5px 5px 5px 30px; margin:0 5px}
+#moshaver-actions .action:after{border-color:#fff transparent transparent}
+#moshaver-actions .action input{background:none; box-shadow:none; border:none; font-weight:bold}
+
+
+#search-moshaver {margin-top:60px}
+#search-moshaver button, #search-moshaver input[type="submit"]{background:none; border:0; box-shadow:none}
+#search-moshaver i{font-size:1.2em}
+
+.grid{margin-top:30px}
+.grid::-webkit-scrollbar { width: 12px; background-color: #F5F5F5; }
+.grid::-webkit-scrollbar-thumb { border-radius: 10px; -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3); background-color: #555; }
+.grid::-webkit-scrollbar-track { -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);  border-radius: 10px; background-color: #F5F5F5; }
+
+#work .table{margin-top:0; max-height:75vh; overflow:auto}
+#work .table .row{margin:0}
+#work .table .row > *{padding-top:5px; padding-bottom:5px; background:rgb(211,211,216); margin-top:5px}
+#work .table .row:nth-child(2n) > *{background:none}
+#work .table .row > :first-child {background:none; padding-top:0; padding-bottom:0}
+#work .table .row > :first-child > div{background:rgb(128,169,210); padding:5px 15px; border-radius:0}
+#work .table .row :nth-child(2){border-top-right-radius:4px; border-bottom-right-radius:4px}
+#work .table .row :last-child{border-top-left-radius:4px; border-bottom-left-radius:4px}
+
+
+
+
+#pager{text-align:center; margin-bottom:10px}
+#pager a{color:#444; text-decoration:none; display:inline-block; margin:4px 8px}
+#pager .control{
+	width:24px; height:24px; background:#444; color:#fff; text-align:center; padding:3px 0; border-radius:50%; position:relative; bottom:15px;
+	box-shadow:2px 2px 4px #aaa, -2px -2px 4px #aaa, 2px -2px 4px #aaa, -2px 2px 4px #aaa;
+}
+#pager ul{display:inline-block;}
+#pager li{display:inline-block; position:relative}
+#pager li i{display:block; color:#bbb; font-size:0.6em; transition:all 0.3s}
+#pager li i.active, #pager li:hover i{color:#444;}
+
+

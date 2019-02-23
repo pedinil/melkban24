@@ -1,0 +1,445 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+
+	<!-- DispatcherServlet Context: defines this servlet's request-processing 
+		infrastructure -->
+
+
+       
+	<!-- Enables the Spring MVC @Controller programming model -->
+	<annotation-driven />
+	
+
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving 
+		up static resources in the ${webappRoot}/resources directory -->
+	<resources mapping="/resources/**" location="/resources/" cache-period="31556926"/>
+
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
+		in the /WEB-INF/views directory -->
+	<beans:bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="suffix" value=".jsp" />
+	</beans:bean>
+	
+	
+
+	<beans:bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+
+		 <!-- setting maximum upload size -->
+		<beans:property name="maxUploadSize" value="23068672" />
+
+	</beans:bean>
+
+	
+	
+	
+
+     <beans:bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource"
+		destroy-method="close">
+		<beans:property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		
+	  <!--   <beans:property name="url"
+			value="jdbc:mysql://45.33.94.20:3306/melkDB" />
+		<beans:property name="username" value="melkDB24" />
+		<beans:property name="password" value="123321" />   -->
+		
+	  <beans:property name="url"
+			value="jdbc:mysql://206.222.8.76:3306/melkDB" />
+		<beans:property name="username" value="melkDBU" />
+		<beans:property name="password" value="123QWEasd" /> 
+		
+		<beans:property name="initialSize" value="7" />
+		<beans:property name="maxTotal" value="50" />
+		<beans:property name="maxIdle" value="10" />
+		<beans:property name="minIdle" value="0" />
+	<!-- 	<beans:property name="maxWaitMillis" value="0" /> -->
+		
+	
+	</beans:bean> 
+	
+	
+	
+
+	
+
+ 	
+
+
+
+	<!-- Hibernate 5 SessionFactory Bean definition -->
+	<beans:bean id="SessionFactory"
+		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+		<beans:property name="dataSource" ref="dataSource" />
+		<beans:property name="annotatedClasses">
+		
+			<beans:list>
+				<beans:value>com.melk.spring.model.Person</beans:value>
+				<beans:value>com.melk.spring.model.Users</beans:value>
+				<beans:value>com.melk.spring.model.State</beans:value>
+				<beans:value>com.melk.spring.model.City</beans:value>
+				<beans:value>com.melk.spring.model.Area</beans:value>
+				<beans:value>com.melk.spring.model.News</beans:value>
+				<beans:value>com.melk.spring.model.KindCase</beans:value>
+				<beans:value>com.melk.spring.model.KindRequest</beans:value>
+				<beans:value>com.melk.spring.model.Know</beans:value>
+				<beans:value>com.melk.spring.model.Range</beans:value>
+				<beans:value>com.melk.spring.model.Nama</beans:value>
+				<beans:value>com.melk.spring.model.CaseSide</beans:value>
+				<beans:value>com.melk.spring.model.Case</beans:value>
+				<beans:value>com.melk.spring.model.Roof</beans:value>
+				<beans:value>com.melk.spring.model.Service</beans:value>
+				<beans:value>com.melk.spring.model.SystemG</beans:value>
+				<beans:value>com.melk.spring.model.SystemS</beans:value>
+				<beans:value>com.melk.spring.model.Windows</beans:value>
+				<beans:value>com.melk.spring.model.Kitchen</beans:value>
+				<beans:value>com.melk.spring.model.Cabinet</beans:value>
+				<beans:value>com.melk.spring.model.CaseSearch</beans:value>
+				<beans:value>com.melk.spring.model.Dynamic</beans:value>
+				<beans:value>com.melk.spring.model.Galary</beans:value>
+				<beans:value>com.melk.spring.model.GuideBuy</beans:value>
+				
+				<beans:value>com.melk.spring.model.admin.CaseAdmin</beans:value>
+				
+			</beans:list>
+		</beans:property>
+		
+	 	<beans:property name="hibernateProperties">
+			<beans:props>
+				 <beans:prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</beans:prop> 
+				<beans:prop key="hibernate.show_sql">false</beans:prop>
+				<beans:prop key="hibernate.format_sql">false</beans:prop>
+			<!-- 	<beans:prop key="hibernate.connection.useUnicode">true</beans:prop>	
+				<beans:prop key="hibernate.connection.characterEncoding">UTF-8</beans:prop>
+				<beans:prop key="hibernate.connection.charSet">UTF-8</beans:prop> -->
+
+				  
+			</beans:props>
+		</beans:property>
+		
+		
+	</beans:bean>
+	
+	
+	
+
+	
+
+	
+	
+	<beans:bean id="personDAO" class="com.melk.spring.dao.PersonDAOImpl">
+		<beans:property name="sessionFactory" ref="SessionFactory" />
+	</beans:bean>
+	<beans:bean id="personService" class="com.melk.spring.service.PersonServiceImpl">
+		<beans:property name="personDAO" ref="personDAO"></beans:property>
+	</beans:bean>
+	
+	
+	
+	<beans:bean id="UsersDAO" class="com.melk.spring.dao.UsersDAOImpl">
+		<beans:property name="sessionFactory" ref="SessionFactory" />
+	</beans:bean>
+	<beans:bean id="UsersService" class="com.melk.spring.service.UsersServiceImpl">
+		<beans:property name="UsersDAO" ref="UsersDAO"></beans:property>
+	</beans:bean>
+	
+	
+	
+	<beans:bean id="StateDAO" class="com.melk.spring.dao.StateDAOImpl">
+		<beans:property name="sessionFactory" ref="SessionFactory" />
+	</beans:bean>
+	<beans:bean id="StateService" class="com.melk.spring.service.StateServiceImpl">
+		<beans:property name="StateDAO" ref="StateDAO"></beans:property>
+	</beans:bean>
+	
+
+	
+	<beans:bean id="CityDAO" class="com.melk.spring.dao.CityDAOImpl">
+		<beans:property name="sessionFactory" ref="SessionFactory" />
+	</beans:bean>
+	<beans:bean id="CityService" class="com.melk.spring.service.CityServiceImpl">
+		<beans:property name="CityDAO" ref="CityDAO"></beans:property>
+	</beans:bean>
+	
+	
+	
+	<beans:bean id="AreaDAO" class="com.melk.spring.dao.AreaDAOImpl">
+		<beans:property name="sessionFactory" ref="SessionFactory" />
+	</beans:bean>
+	<beans:bean id="AreaService" class="com.melk.spring.service.AreaServiceImpl">
+		<beans:property name="AreaDAO" ref="AreaDAO"></beans:property>
+	</beans:bean>
+	
+	
+	<beans:bean id="NewsDAO" class="com.melk.spring.dao.NewsDAOImpl">
+		<beans:property name="sessionFactory" ref="SessionFactory" />
+	</beans:bean>
+	<beans:bean id="NewsService" class="com.melk.spring.service.NewsServiceImpl">
+		<beans:property name="NewsDAO" ref="NewsDAO"></beans:property>
+	</beans:bean>
+	
+	<beans:bean id="KindCaseDAO" class="com.melk.spring.dao.KindCaseDAOImpl">
+		<beans:property name="sessionFactory" ref="SessionFactory" />
+	</beans:bean>
+	<beans:bean id="KindCaseService" class="com.melk.spring.service.KindCaseServiceImpl">
+		<beans:property name="KindCaseDAO" ref="KindCaseDAO"></beans:property>
+	</beans:bean>
+	
+	
+	<beans:bean id="KindRequestDAO" class="com.melk.spring.dao.KindRequestDAOImpl">
+		<beans:property name="sessionFactory" ref="SessionFactory" />
+	</beans:bean>
+	<beans:bean id="KindRequestService" class="com.melk.spring.service.KindRequestServiceImpl">
+		<beans:property name="KindRequestDAO" ref="KindRequestDAO"></beans:property>
+	</beans:bean>
+	
+	
+	<beans:bean id="KnowDAO" class="com.melk.spring.dao.KnowDAOImpl">
+		<beans:property name="sessionFactory" ref="SessionFactory" />
+	</beans:bean>
+	<beans:bean id="KnowService" class="com.melk.spring.service.KnowServiceImpl">
+		<beans:property name="KnowDAO" ref="KnowDAO"></beans:property>
+	</beans:bean>
+	
+	
+	<beans:bean id="RangeDAO" class="com.melk.spring.dao.RangeDAOImpl">
+		<beans:property name="sessionFactory" ref="SessionFactory" />
+	</beans:bean>
+	<beans:bean id="RangeService" class="com.melk.spring.service.RangeServiceImpl">
+		<beans:property name="RangeDAO" ref="RangeDAO"></beans:property>
+	</beans:bean>
+	
+	
+	<beans:bean id="NamaDAO" class="com.melk.spring.dao.NamaDAOImpl">
+		<beans:property name="sessionFactory" ref="SessionFactory" />
+	</beans:bean>
+	<beans:bean id="NamaService" class="com.melk.spring.service.NamaServiceImpl">
+		<beans:property name="NamaDAO" ref="NamaDAO"></beans:property>
+	</beans:bean>
+	
+	
+	<beans:bean id="CaseSideDAO" class="com.melk.spring.dao.CaseSideDAOImpl">
+		<beans:property name="sessionFactory" ref="SessionFactory" />
+	</beans:bean>
+	<beans:bean id="CaseSideService" class="com.melk.spring.service.CaseSideServiceImpl">
+		<beans:property name="CaseSideDAO" ref="CaseSideDAO"></beans:property>
+	</beans:bean>
+
+	<beans:bean id="SystemSDAO" class="com.melk.spring.dao.SystemSDAOImpl">
+		<beans:property name="sessionFactory" ref="SessionFactory" />
+	</beans:bean>	
+	<beans:bean id="SystemSService" class="com.melk.spring.service.SystemSServiceImpl">
+		<beans:property name="SystemSDAO" ref="SystemSDAO" />
+	</beans:bean>	
+	
+	<beans:bean id="CaseDAO" class="com.melk.spring.dao.CaseDAOImpl">
+		<beans:property name="sessionFactory" ref="SessionFactory" />
+	</beans:bean>
+	<beans:bean id="CaseService" class="com.melk.spring.service.CaseServiceImpl">
+		<beans:property name="CaseDAO" ref="CaseDAO"></beans:property>
+	</beans:bean>
+	
+	
+	<beans:bean id="RoofDAO" class="com.melk.spring.dao.RoofDAOImpl">
+		<beans:property name="sessionFactory" ref="SessionFactory" />
+	</beans:bean>
+	<beans:bean id="RoofService" class="com.melk.spring.service.RoofServiceImpl">
+		<beans:property name="RoofDAO" ref="RoofDAO"></beans:property>
+	</beans:bean>
+	
+	<beans:bean id="KitchenDAO" class="com.melk.spring.dao.KitchenDAOImpl">
+		<beans:property name="sessionFactory" ref="SessionFactory" />
+	</beans:bean>
+	<beans:bean id="KitchenService" class="com.melk.spring.service.KitchenServiceImpl">
+		<beans:property name="KitchenDAO" ref="KitchenDAO"></beans:property>
+	</beans:bean>
+	
+	
+	<beans:bean id="CabinetDAO" class="com.melk.spring.dao.CabinetDAOImpl">
+		<beans:property name="sessionFactory" ref="SessionFactory" />
+	</beans:bean>
+	<beans:bean id="CabinetService" class="com.melk.spring.service.CabinetServiceImpl">
+		<beans:property name="CabinetDAO" ref="CabinetDAO"></beans:property>
+	</beans:bean>
+	
+	
+	<beans:bean id="WindowsDAO" class="com.melk.spring.dao.WindowsDAOImpl">
+		<beans:property name="sessionFactory" ref="SessionFactory" />
+	</beans:bean>
+	<beans:bean id="WindowsService" class="com.melk.spring.service.WindowsServiceImpl">
+		<beans:property name="WindowsDAO" ref="WindowsDAO"></beans:property>
+	</beans:bean>
+	
+	<beans:bean id="ServiceDAO" class="com.melk.spring.dao.ServiceDAOImpl">
+		<beans:property name="sessionFactory" ref="SessionFactory" />
+	</beans:bean>
+	<beans:bean id="ServiceService" class="com.melk.spring.service.ServiceServiceImpl">
+		<beans:property name="ServiceDAO" ref="ServiceDAO"></beans:property>
+	</beans:bean>
+	
+	
+	<beans:bean id="SystemGDAO" class="com.melk.spring.dao.SystemGDAOImpl">
+		<beans:property name="sessionFactory" ref="SessionFactory" />
+	</beans:bean>
+	<beans:bean id="SystemGService" class="com.melk.spring.service.SystemGServiceImpl">
+		<beans:property name="SystemGDAO" ref="SystemGDAO"></beans:property>
+	</beans:bean>
+	
+	
+	<beans:bean id="DynamicDAO" class="com.melk.spring.dao.DynamicDAOImpl">
+		<beans:property name="sessionFactory" ref="SessionFactory" />
+	</beans:bean>
+	<beans:bean id="DynamicService" class="com.melk.spring.service.DynamicServiceImpl">
+		<beans:property name="DynamicDAO" ref="DynamicDAO"></beans:property>
+	</beans:bean>
+	
+	
+	
+	<beans:bean id="GalaryDAO" class="com.melk.spring.dao.GalaryDAOImpl">
+		<beans:property name="sessionFactory" ref="SessionFactory" />
+	</beans:bean>
+	<beans:bean id="GalaryService" class="com.melk.spring.service.GalaryServiceImpl">
+		<beans:property name="GalaryDAO" ref="GalaryDAO"></beans:property>
+	</beans:bean>
+	
+	<beans:bean id="GuideDAO" class="com.melk.spring.dao.GuideDAOImpl">
+		<beans:property name="sessionFactory" ref="SessionFactory" />
+	</beans:bean>
+	<beans:bean id="GuideService" class="com.melk.spring.service.GuideServiceImpl">
+		<beans:property name="GuideDAO" ref="GuideDAO"></beans:property>
+	</beans:bean>
+	
+	
+	
+	
+	<context:component-scan base-package="com.melk.spring" />
+	
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+	
+	<!-- <beans:bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<beans:property name="sessionFactory" ref="SessionFactory" />
+	</beans:bean> -->
+	
+	<beans:bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+	    <beans:property name="sessionFactory" ref="SessionFactory" />
+	</beans:bean>
+
+	
+    <beans:bean id="cacheManager" class="org.springframework.cache.support.SimpleCacheManager" >
+        <beans:property name="caches" >
+            <beans:set>
+                <beans:bean
+                  class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean"
+                  name="states"/>
+                  
+                 <beans:bean
+                  class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean"
+                  name="listAreaByCity"/>
+                  
+                 <beans:bean
+                  class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean"
+                  name="listCityByState"/>
+                  
+                  <beans:bean
+                  class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean"
+                  name="KindCase"/>
+                  
+                  <beans:bean
+                  class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean"
+                  name="KindRequest"/>
+                  
+                  <beans:bean
+                  class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean"
+                  name="listRangeByArea"/>
+                  
+                  <beans:bean
+                  class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean"
+                  name="listNama"/>
+                  
+                   <beans:bean
+                  class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean"
+                  name="listCaseSide"/>
+                  
+                   <beans:bean
+                  class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean"
+                  name="listSystemG"/>
+                  
+                   <beans:bean
+                  class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean"
+                  name="listSystemS" />
+                  
+                  
+                    <beans:bean
+                  class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean"
+                  name="listKitchen" />
+                  
+                  
+                    <beans:bean
+                  class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean"
+                  name="listCabinet" />
+                  
+                  
+                  <beans:bean
+                  class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean"
+                  name="listRoof" />
+                  
+                   <beans:bean
+                  class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean"
+                  name="listWindows" />
+                  
+                   <beans:bean
+                  class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean"
+                  name="listService" />
+                  
+                    <beans:bean
+                  class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean"
+                  name="listSystemG" />
+                  
+                <!--   <beans:bean
+                  class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean"
+                  name="getCaseSearchCount" />  -->
+                  
+                  
+                     <beans:bean
+                  class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean"
+                  name="getKindRequestId" />
+                  
+                  
+                     <beans:bean
+                  class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean"
+                  name="getKindCaseId" />
+                  
+                  <beans:bean
+                  class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean"
+                  name="getStateId" />
+                  
+                   <beans:bean
+                  class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean"
+                  name="getCityId" />
+                  
+                   <beans:bean
+                  class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean"
+                  name="getAreaId" />
+                  
+                   <beans:bean
+                  class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean"
+                  name="getRangeId" />
+                  
+                  
+                  
+            </beans:set>
+        </beans:property>
+    </beans:bean>
+
+
+
+
+
+</beans:beans>
