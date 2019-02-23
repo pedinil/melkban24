@@ -46,10 +46,7 @@
 		destroy-method="close">
 		<beans:property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		
-	  <!--   <beans:property name="url"
-			value="jdbc:mysql://45.33.94.20:3306/melkDB" />
-		<beans:property name="username" value="melkDB24" />
-		<beans:property name="password" value="123321" />   -->
+	
 		
 	  <beans:property name="url"
 			value="jdbc:mysql://xxxx" />
