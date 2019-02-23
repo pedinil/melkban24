@@ -52,9 +52,9 @@
 		<beans:property name="password" value="123321" />   -->
 		
 	  <beans:property name="url"
-			value="jdbc:mysql://206.222.8.76:3306/melkDB" />
-		<beans:property name="username" value="melkDBU" />
-		<beans:property name="password" value="123QWEasd" /> 
+			value="jdbc:mysql://xxxx" />
+		<beans:property name="username" value="xx" />
+		<beans:property name="password" value="xx" /> 
 		
 		<beans:property name="initialSize" value="7" />
 		<beans:property name="maxTotal" value="50" />
